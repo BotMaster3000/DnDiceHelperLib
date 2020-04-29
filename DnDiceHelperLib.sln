@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDiceHelperLib", "DnDiceHelperLib\DnDiceHelperLib.csproj", "{894AD044-4434-4682-B25C-3E7B9BDE853C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDiceHelperLibTests", "DnDiceHelperLibTests\DnDiceHelperLibTests.csproj", "{BAC53F64-6003-4BD7-9AE2-6819465D3DFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{894AD044-4434-4682-B25C-3E7B9BDE853C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{894AD044-4434-4682-B25C-3E7B9BDE853C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{894AD044-4434-4682-B25C-3E7B9BDE853C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{894AD044-4434-4682-B25C-3E7B9BDE853C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC53F64-6003-4BD7-9AE2-6819465D3DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC53F64-6003-4BD7-9AE2-6819465D3DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC53F64-6003-4BD7-9AE2-6819465D3DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC53F64-6003-4BD7-9AE2-6819465D3DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C98E7BFB-1831-4953-AF16-8E78CA644B88}
+	EndGlobalSection
+EndGlobal
