@@ -14,5 +14,13 @@ namespace DnDiceHelperLib.Helper
                 throw new ArgumentOutOfRangeException($"Parameter out of range: {parameterName}={parameter}");
             }
         }
+
+        internal static void ThrowArgumentNullExceptionIfParameterNull(string parameterName, object parameter)
+        {
+            if(parameter == null)
+            {
+                throw new ArgumentNullException($"Parameter provided was null: {parameterName}");
+            }
+        }
     }
 }

@@ -36,5 +36,19 @@ namespace DnDiceHelperLib.Logic.Tests
                 Assert.IsTrue(result <= maxDiceRoll);
             }
         }
+
+        [TestMethod]
+        public void RollDiceTest_NullParameter_ArgumentNullException()
+        {
+            DiceRoller roller = new DiceRoller();
+            Assert.ThrowsException<ArgumentNullException>(() => roller.RollDice(null));
+        }
+
+        [TestMethod]
+        public void RollDiceTest_ZeroDiceToRoll_ShouldReturnZero()
+        {
+            DiceRoller roller = new DiceRoller();
+            Assert.AreEqual(0, roller.RollDice(new IDice[] { }));
+        }
     }
 }

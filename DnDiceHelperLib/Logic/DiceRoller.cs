@@ -10,8 +10,9 @@ namespace DnDiceHelperLib.Logic
     {
         public int RollDice(IDice[] dices)
         {
+            ExceptionManager.ThrowArgumentNullExceptionIfParameterNull(nameof(dices), dices);
             int result = 0;
-            for(int i = 0; i < dices.Length; ++i)
+            for (int i = 0; i < dices.Length; ++i)
             {
                 result += RandomManager.NextNumber(dices[i].Sides);
             }
