@@ -34,9 +34,10 @@ namespace DnDiceHelperLib.Logic
         {
             ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(totalDice), totalDice, true);
             IDice[] dices = new IDice[totalDice];
+            IDice dice = GetDice(sides);
             for (int i = 0; i < totalDice; ++i)
             {
-                dices[i] = GetDice(sides);
+                dices[i] = dice;
             }
             return dices;
         }
