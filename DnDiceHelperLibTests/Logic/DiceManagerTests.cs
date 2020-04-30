@@ -110,5 +110,46 @@ namespace DnDiceHelperLib.Logic.Tests
                 Assert.AreEqual(sidesAndDice.Value, dicesWithSameSideCount);
             }
         }
+
+        [TestMethod]
+        public void GetDicesTest_GetMultipleDiceWithNegativeSides_ArgumentOutOfRangeException()
+        {
+            IDictionary<int, int> sideCountAndTotalDice = new Dictionary<int, int>()
+            {
+                {-rand.Next(), rand.Next(1000)},
+            };
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(sideCountAndTotalDice));
+        }
+
+        [TestMethod]
+        public void GetDicesTest_GetMultipleDiceWithZeroSides_ArgumentOutOfRangeException()
+        {
+            IDictionary<int, int> sideCountAndTotalDice = new Dictionary<int, int>()
+            {
+                {0, rand.Next(1000)},
+            };
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(sideCountAndTotalDice));
+        }
+
+        [TestMethod]
+        public void GetDicesTest_GetNegativeDiceWithValidSides_ArgumentOutOfRangeException()
+        {
+            IDictionary<int, int> sideCountAndTotalDice = new Dictionary<int, int>()
+            {
+                {rand.Next(), -rand.Next()},
+            };
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(sideCountAndTotalDice));
+        }
+
+        [TestMethod]
+        public void GetDicesTest_GetZeroDiceWithValidSides_ShouldReturnZeroDice()
+        {
+            IDictionary<int, int> sideCountAndTotalDice = new Dictionary<int, int>()
+            {
+                {rand.Next(), 0},
+            };
+            IDice[] dices = DiceManager.GetDices(sideCountAndTotalDice);
+            Assert.AreEqual(0, dices.Length);
+        }
     }
 }
