@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using DnDiceHelperLib.Helper;
 
 namespace DnDiceHelperLib.Logic
 {
@@ -13,7 +14,7 @@ namespace DnDiceHelperLib.Logic
 
         public static IDice GetDice(int sides)
         {
-            ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(sides), sides);
+            ExceptionManager.ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(sides), sides);
             if (!diceDictionary.ContainsKey(sides))
             {
                 diceDictionary.Add(sides, new Dice(sides));
@@ -21,18 +22,9 @@ namespace DnDiceHelperLib.Logic
             return diceDictionary[sides];
         }
 
-        private static void ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(string parameterName, int parameter, bool allowZeroValue = false)
-        {
-            if ((allowZeroValue && parameter < 0)
-                || (!allowZeroValue && parameter <= 0))
-            {
-                throw new ArgumentOutOfRangeException($"Parameter out of range: {parameterName}={parameter}");
-            }
-        }
-
         public static IDice[] GetDices(int sides, int totalDice)
         {
-            ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(totalDice), totalDice, true);
+            ExceptionManager.ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(totalDice), totalDice, true);
             IDice[] dices = new IDice[totalDice];
             IDice dice = GetDice(sides);
             for (int i = 0; i < totalDice; ++i)
