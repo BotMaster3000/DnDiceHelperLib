@@ -13,6 +13,7 @@ namespace DnDiceHelperLib.Logic
 
         public static IDice GetDice(int sides)
         {
+            ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(sides), sides);
             if (!diceDictionary.ContainsKey(sides))
             {
                 diceDictionary.Add(sides, new Dice(sides));
@@ -20,8 +21,18 @@ namespace DnDiceHelperLib.Logic
             return diceDictionary[sides];
         }
 
+        private static void ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(string parameterName, int parameter, bool allowZeroValue = false)
+        {
+            if ((allowZeroValue && parameter < 0)
+                || (!allowZeroValue && parameter <= 0))
+            {
+                throw new ArgumentOutOfRangeException($"Parameter out of range: {parameterName}={parameter}");
+            }
+        }
+
         public static IDice[] GetDices(int sides, int totalDice)
         {
+            ThrowArgumentOutOfRangeExceptionIfParameterNegativeOrZero(nameof(totalDice), totalDice, true);
             IDice[] dices = new IDice[totalDice];
             for (int i = 0; i < totalDice; ++i)
             {

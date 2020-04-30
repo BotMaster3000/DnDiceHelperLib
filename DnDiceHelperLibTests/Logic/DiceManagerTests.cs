@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using DnDiceHelperLib.Interfaces;
 using System.Linq;
+using DnDiceHelperLib.Models;
 
 namespace DnDiceHelperLib.Logic.Tests
 {
@@ -25,6 +26,20 @@ namespace DnDiceHelperLib.Logic.Tests
         }
 
         [TestMethod]
+        public void GetDiceTest_GetDiceWithNegativeSides_ArgumentOutOfRangeException()
+        {
+            int sides = -rand.Next();
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDice(sides));
+        }
+
+        [TestMethod]
+        public void GetDiceTest_GetDiceWithZeroSides_ArgumentOutOfRangeException()
+        {
+            const int Sides = 0;
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDice(Sides));
+        }
+
+        [TestMethod]
         public void GetDicesTest_GetMultipleDiceWithSameSide()
         {
             for (int i = 0; i < 100; ++i)
@@ -38,6 +53,39 @@ namespace DnDiceHelperLib.Logic.Tests
                     Assert.AreEqual(sides, dice.Sides);
                 }
             }
+        }
+
+        [TestMethod]
+        public void GetDicesTest_GetTotalOfZeroDice_ShouldReturnZeroDice()
+        {
+            const int DiceToGenerate = 0;
+            int sides = rand.Next();
+            IDice[] dices = DiceManager.GetDices(sides, DiceToGenerate);
+            Assert.AreEqual(0, dices.Length);
+        }
+
+        [TestMethod]
+        public void GetDicesTest_GetNegativeNumberOfDice_ArgumentOutOfRangeException()
+        {
+            int diceToGenerate = -rand.Next();
+            int sides = rand.Next();
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(sides, diceToGenerate));
+        }
+
+        [TestMethod]
+        public void GetDicesTest_ZeroSidesPerDice_ArgumentOutOfRangeException()
+        {
+            int diceToGenerate = -rand.Next(1000);
+            const int Sides = 0;
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(Sides, diceToGenerate));
+        }
+
+        [TestMethod]
+        public void GetDicesTest_NegativeSidesPerDice_ArgumentOutOfRangeException()
+        {
+            int diceToGenerate = rand.Next(1000);
+            int sides = -rand.Next();
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => DiceManager.GetDices(sides, diceToGenerate));
         }
 
         [TestMethod]
