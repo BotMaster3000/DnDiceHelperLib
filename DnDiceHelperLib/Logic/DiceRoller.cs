@@ -8,6 +8,12 @@ namespace DnDiceHelperLib.Logic
 {
     public class DiceRoller : IDiceRoller
     {
+        public int RollDice(IDice dice)
+        {
+            ExceptionManager.ThrowArgumentNullExceptionIfParameterNull(nameof(dice), dice);
+            return RandomManager.NextNumber(dice.Sides);
+        }
+
         public int RollDice(IDice[] dices)
         {
             ExceptionManager.ThrowArgumentNullExceptionIfParameterNull(nameof(dices), dices);

@@ -41,7 +41,7 @@ namespace DnDiceHelperLib.Logic.Tests
         public void RollDiceTest_NullParameter_ArgumentNullException()
         {
             DiceRoller roller = new DiceRoller();
-            Assert.ThrowsException<ArgumentNullException>(() => roller.RollDice(null));
+            Assert.ThrowsException<ArgumentNullException>(() => roller.RollDice(dices: null));
         }
 
         [TestMethod]
@@ -49,6 +49,22 @@ namespace DnDiceHelperLib.Logic.Tests
         {
             DiceRoller roller = new DiceRoller();
             Assert.AreEqual(0, roller.RollDice(new IDice[] { }));
+        }
+
+        [TestMethod]
+        public void RollDiceSingleTest()
+        {
+            IDice dice = DiceManager.GetDice(rand.Next());
+            DiceRoller roller = new DiceRoller();
+            int result = roller.RollDice(dice);
+            Assert.IsTrue(result >= 1 && result <= dice.Sides);
+        }
+
+        [TestMethod]
+        public void RollDiceSingleTest_NullParameter_ArgumentNullException()
+        {
+            DiceRoller roller = new DiceRoller();
+            Assert.ThrowsException<ArgumentNullException>(() => roller.RollDice(dice: null));
         }
     }
 }
