@@ -18,11 +18,12 @@ namespace DnDiceHelperLib.Logic
         public int RollDice(IDice[] dices)
         {
             ExceptionManager.ThrowArgumentNullExceptionIfParameterNull(nameof(dices), dices);
-            return dices.Length > 0
-                ? RandomManager.NextNumber(dices
-                    .Sum(dice
-                        => dice.Sides))
-                : 0;
+            int result = 0;
+            for (int i = 0; i < dices.Length; ++i)
+            {
+                result += RandomManager.NextNumber(dices[i].Sides);
+            }
+            return result;
         }
     }
 }
